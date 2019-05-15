@@ -1,0 +1,4 @@
+title=Meritous
+description=Meritous port
+exec=/home/retrofw/games/meritous/meritous.elf
+clock=600

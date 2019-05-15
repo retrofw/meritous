@@ -131,6 +131,7 @@ int explored = 0;
 int artifacts[12];
 SDL_Surface *artifact_spr = NULL;
 SDL_Surface *artifact_spr_large = NULL;
+SDL_Surface *ScreenSurface;
 
 int player_shield;
 int circuit_fillrate;
@@ -247,8 +248,12 @@ void VideoUpdate()
 {
 	static int bmp = 0;
 	char bmp_name[256];
-	
-	SDL_Flip(screen);
+
+	SDL_Surface *p = SDL_ConvertSurface(screen, ScreenSurface->format, 0);
+	SDL_BlitSurface(p, NULL, ScreenSurface, NULL);
+	SDL_Flip(ScreenSurface);
+	SDL_FreeSurface(p);
+	// SDL_Flip(screen);
 	if (WriteBitmaps) {
 		if ((bmp >= WB_StartRange)&&(bmp < WB_EndRange)) {
 			sprintf(bmp_name, "v/bmp%d.bmp", bmp);
@@ -474,7 +479,8 @@ int main(int argc, char **argv)
 	asceai = IMG_Load("dat/i/asceai.png");
 	wm_icon = IMG_Load("dat/i/icon.png");
 
-	screen = SDL_SetVideoMode(SCREEN_W, SCREEN_H, 8, SDL_HWSURFACE | SDL_DOUBLEBUF | (SDL_FULLSCREEN * fullscreen));
+	ScreenSurface = SDL_SetVideoMode(SCREEN_W, SCREEN_H, 16, SDL_HWSURFACE | SDL_TRIPLEBUF | (SDL_FULLSCREEN * fullscreen));
+	screen = SDL_CreateRGBSurface(SDL_SWSURFACE, SCREEN_W, SCREEN_H, 8, 0, 0, 0, 0);
 	SDL_ShowCursor(SDL_DISABLE);
 	
 	wm_mask_file = fopen("dat/d/icon_bitmask.dat", "rb");

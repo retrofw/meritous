@@ -1,0 +1,10 @@
+Package: meritous
+Version: 
+Description: RetroGame port of Meritous
+Section: emus
+Priority: optional
+Maintainer: pingflood
+Architecture: mipsel
+Homepage: https://github.com/retrofw/meritous
+Depends:
+Source: https://github.com/retrofw/meritous
