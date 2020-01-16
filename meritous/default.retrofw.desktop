@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Meritous
+Comment=Meritous port
+Exec=meritous.dge
+Icon=meritous
+Categories=games;
+X-OD-Manual=meritous.man.txt
+X-OD-Selector=
+X-OD-Filter=
+Terminal=false
+Type=Application
+StartupNotify=true
